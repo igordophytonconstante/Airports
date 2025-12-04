@@ -3,7 +3,9 @@ package br.com.igor.airport.service;
 import br.com.igor.airport.DTO.AirportMinDTO;
 import br.com.igor.airport.entites.Airport;
 import br.com.igor.airport.entites.AirportRepository;
+import br.com.igor.airport.projections.AirportNearMeProjection;
 import java.util.List;
+import static java.util.stream.Collectors.toList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,21 @@ public class AirportService {
            
            return resultDTO;
        }
- } 
+        public Airport findByIataCode(String iataCode) {
+            Airport result = airportRepository.findByIataCode(iataCode);
+            return result;
+        }
+        public List<AirportNearMeDTO> findNearMe(double latitude, double longitude) {
+            List<AirportNearMeProjection> resultNearAirports = airportRepository.findNearMe(latitude, longitude);
+             
+            List<AirportNearMeDTO> resultDTO = resultNearAirports.stream()
+                    .map(x -> new AirportNearMeDTO(x)).toList();
+                    
+                    return resultDTO;
+                    
+        }
+        }
+ 
+
 
 

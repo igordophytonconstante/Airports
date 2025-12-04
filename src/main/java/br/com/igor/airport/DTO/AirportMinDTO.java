@@ -14,6 +14,7 @@ public class AirportMinDTO {
     private long id;
     private String name;
     private String city;
+    private String iataCode;
 
     public AirportMinDTO(long id) {
         this.id = id;
@@ -34,8 +35,8 @@ public class AirportMinDTO {
     public String getIataCode() {
         return iataCode;
     }
-    private String iataCode;
     
+  
     public AirportMinDTO() {
         
     }
